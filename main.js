@@ -14,22 +14,30 @@ class UI{
         <td>${task.description}</td>
         <td><button class='delete'>Delete</td>
         <td><button class='edit'>Edit</td>
+        
         `;
+        
+
 
     list.appendChild(row);
     this.clearFields();
     }
-
+    
     deleteTask(target) {
         if(target.className==='delete'){
             target.parentElement.parentElement.remove();
         }
     }
-    deleteTask(target) {
+    editTask(target) {
         if(target.className==='edit'){
-            
+            let selected = target.parentElement.parentElement;
+            // document.getElementById(title).value = selected;
+            console.log(selected);
         }
     }
+
+
+
     clearFields(){
         document.getElementById('title').value = '';
         document.getElementById('description').value = '';
@@ -60,9 +68,11 @@ document.getElementById('task-list').addEventListener('click',(e)=>{
     e.preventDefault();
 
 });
+
 document.getElementById('task-list').addEventListener('click',(e)=>{
     const ui=new UI();
     ui.editTask(e.target);
     e.preventDefault();
 
 });
+ 
