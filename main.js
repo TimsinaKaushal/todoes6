@@ -1,3 +1,4 @@
+selected = null;
 class Task{
     constructor (title, description){
         this.title = title;
@@ -30,12 +31,17 @@ class UI{
     }
     editTask(target) {
         if(target.className==='edit'){
-            let selected = target.parentElement.parentElement;
-            // document.getElementById(title).value = selected;
-            console.log(selected);
+            selected = target.parentElement.parentElement;
+            document.getElementById('title').value = selected.cells[0].innerHTML;
+            document.getElementById('description').value = selected.cells[1].innerHTML;
         }
+        
     }
 
+    update(){
+        selected.cells[0].innerHTML = document.getElementById('title').value;
+        selected.cells[1].innerHTML = document.getElementById('description').value;
+    }
 
 
     clearFields(){
@@ -56,6 +62,12 @@ document.getElementById('task-form').addEventListener('submit',(e)=>{
     if(title===''||description===''){
         document.getElementById('error').innerHTML="Please fill empty fields";
     }
+    else if(selected!=null){
+        const ui=new UI();
+        ui.update();
+        ui.clearFields();
+        selected=null;
+    } 
     else{
         ui.addTaskToList(task);
         ui.clearFields();
