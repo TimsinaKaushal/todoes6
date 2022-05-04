@@ -19,7 +19,7 @@ class UI{
         `;
         
 
-
+    document.getElementById('description').blur(); 
     list.appendChild(row);
     this.clearFields();
     }
@@ -34,6 +34,7 @@ class UI{
             selected = target.parentElement.parentElement;
             document.getElementById('title').value = selected.cells[0].innerHTML;
             document.getElementById('description').value = selected.cells[1].innerHTML;
+            document.getElementById('title').focus();
         }
         
     }
